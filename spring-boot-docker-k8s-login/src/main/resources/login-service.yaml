@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: login-service
+  labels:
+    app: login
+    tier: frontend
+spec:
+  type: NodePort
+  ports:
+  - port: 25000
+    targetPort: 25000
+  selector:
+    app: login
+    tier: frontend

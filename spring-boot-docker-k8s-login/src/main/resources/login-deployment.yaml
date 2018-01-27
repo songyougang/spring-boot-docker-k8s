@@ -1,0 +1,28 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: login-deployment
+spec:
+  selector:
+    matchLabels:
+      app: login
+      tier: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: login
+        tier: frontend
+    spec:
+      containers:
+      - name: login
+        image: 192.168.147.11:5000/spring-boot-docker-k8s-login
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+        ports:
+        - containerPort: 25000
